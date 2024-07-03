@@ -3,6 +3,7 @@
 
 PATH=$PATH:/bin:/usr/bin:/usr/sbin:/sbin:/usr/local/sbin
 
+KDKMS=
 case "$1" in
   --from-dkms-conf*)
     KDKMS=`echo "$1" | sed 's/[^=]*.//'`
@@ -589,6 +590,7 @@ snmp_check() {
 
 dkms_check() {
   DKMSINSTALL=
+  test "$KDKMS" && return
   test "$SKIPDKMS" && return
 
   echo -n "Checking for DKMS... "
